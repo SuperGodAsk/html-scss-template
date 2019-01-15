@@ -1,0 +1,15 @@
+//Adaptive
+@mixin adaptive($media-width) {
+  @media screen and (max-width: #{$media-width}px) {
+    @content;
+  }
+}
+
+//placeholder
+
+@mixin placeholder {
+  &::-webkit-input-placeholder { @content; }
+  &:-moz-placeholder           { @content; }
+  &::-moz-placeholder          { @content; }
+  &:-ms-input-placeholder      { @content; }
+}
