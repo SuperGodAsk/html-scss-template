@@ -5,9 +5,9 @@
   "repository": "https://github.com/SuperGodAsk/html-scss-template.git",
   "license": "MIT",
   "devDependencies": {
-    "gulp": "^4.0.0",
     "browser-sync": "^2.18.12",
     "del": "^3.0.0",
+    "gulp": "^4.0.0",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-cli": "^2.0.1",
     "gulp-concat": "^2.6.1",
@@ -15,10 +15,9 @@
     "gulp-csso": "^3.0.0",
     "gulp-html-prettify": "^0.0.1",
     "gulp-load-plugins": "^1.5.0",
-    "gulp-pug": "^3.3.0",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.0",
-    "gulp-template-html": "^0.2.0",
-    "node-sass": "^4.10.0"
+    "node-sass": "^4.10.0",
+    "panini": "^1.6.3"
   }
 }

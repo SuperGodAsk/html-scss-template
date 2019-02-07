@@ -5,10 +5,16 @@ global.$ = {
     browserSync: require('browser-sync').create(),
     gp: require('gulp-load-plugins')(),
     prettify: require('gulp-html-prettify'),
-    template: require('gulp-template-html')
+    panini: require('panini')
 };
 
-$.gulp.task('scss', () => {
+$.gulp.task('clean', function () {
+    return $.del([
+        './build'
+    ]);
+});
+
+$.gulp.task('compile-scss', () => {
     return $.gulp.src('./scss/**/*.scss')
         .pipe($.gp.sourcemaps.init())
         .pipe($.gp.sass({
@@ -19,34 +25,56 @@ $.gulp.task('scss', () => {
         .pipe($.gp.autoprefixer({
             browsers: ['last 4 version']
         }))
-        .pipe($.gulp.dest('./css/'))
+        .pipe($.gulp.dest('./build/assets/css/'))
         .pipe($.browserSync.reload({
             stream: true
         }));
 });
 
-$.gulp.task('html', () => {
-    return $.gulp.src('./html/pages/*.html')
-        .pipe($.template('./html/template/template.html'))
+
+$.gulp.task('compile-html', () => {
+    return $.gulp.src('html/pages/**/*.html')
+        .pipe($.panini({
+            root: 'html/pages/',
+            layouts: 'html/layouts/',
+            partials: 'html/includes/',
+            helpers: 'html/helpers/',
+            data: 'html/data/'
+        }))
         .pipe($.prettify({indent_char: ' ', indent_size: 2}))
-        .pipe($.gulp.dest('./'))
+        .pipe($.gulp.dest('./build/'))
+        .on('end', $.browserSync.reload);
+});
+
+$.gulp.task('compile-html:reset', (done) => {
+    $.panini.refresh();
+    done();
+});
+
+$.gulp.task('assets', function () {
+    return $.gulp.src('./assets/**/*')
+        .pipe($.gulp.dest('./build/assets/'))
         .pipe($.browserSync.reload({
             stream: true
         }));
-})
+});
 
 $.gulp.task('watch', function () {
-    $.gulp.watch('./scss/**/*.scss', $.gulp.series('scss'));
-    $.gulp.watch('./html/pages/*.html', $.gulp.series('html'));
+    $.gulp.watch('./scss/**/*.scss', $.gulp.series('compile-scss'));
+    $.gulp.watch('./html/pages/*.html', $.gulp.series('compile-html'));
+    $.gulp.watch('html/{layouts,includes,helpers,data}/**/*', $.gulp.series('compile-html:reset', 'compile-html'));
+    $.gulp.watch('./assets/**/*', $.gulp.series('assets'));
 });
 $.gulp.task('serve', function () {
     $.browserSync.init({
-        server: './'
+        server: './build'
     });
 });
 $.gulp.task('default', $.gulp.series(
-    'html',
-    'scss',
+    'clean',
+    'assets',
+    'compile-html',
+    'compile-scss',
     $.gulp.parallel(
         'watch',
         'serve'

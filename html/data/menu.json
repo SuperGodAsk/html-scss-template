@@ -1,0 +1,21 @@
+{
+  "name": "TopMenu",
+  "items": [
+    {
+      "title": "Главная",
+      "link": "/"
+    },
+    {
+      "title": "Каталог",
+      "link": "/catalog/"
+    },
+    {
+      "title": "Блог",
+      "link": "/blog/"
+    },
+    {
+      "title": "Контакты",
+      "link": "/contacts/"
+    }
+  ]
+}

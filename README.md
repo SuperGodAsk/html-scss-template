@@ -1,6 +1,6 @@
 # html-scss-template
 
-Startup development template with using scss and html template
+Startup development template with using scss and panini templates
 
 For using clone repository with
 
