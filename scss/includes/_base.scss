@@ -12,6 +12,8 @@ img {
 *:after,
 *:before {
   box-sizing: border-box;
+  outline: none;
+  -webkit-font-smoothing: antialiased;
 }
 *{
   position:relative;
@@ -21,23 +23,71 @@ body {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  overflow-x: hidden;
+  min-width: 320px;
+  min-height: 100vh;
+  color: #202020;
 }
 
-.center{
-  width: 1040px;
-  padding: 0 20px;
-  margin: 0 auto;
-  max-width:100%;
+::-webkit-scrollbar {
+  -webkit-appearance: none;
 }
-.overlay{
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 11;
-  display: none;
+
+::-webkit-scrollbar:vertical {
+  width: 12px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #2B9D00;
+  border-radius: 0;
+  border: 0;
+  transition: all .2s ease-in-out;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  transition: all .2s ease-in-out;
+}
+
+a, label {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.visually-hidden {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  position: absolute;
+  clip: rect(0 0 0 0);
+}
+
+.container{
+  &-outer{
+    @extend %container;
+    max-width: 1870px;
+  }
+  &-inner{
+    @extend %container;
+    max-width: 1170px;
+  }
+
+}
+
+header, main, footer {
+  flex-shrink: 0;
+}
+
+footer {
+  margin-top: auto;
+}
+
+.fancybox-navigation {
+  position: static;
 }
