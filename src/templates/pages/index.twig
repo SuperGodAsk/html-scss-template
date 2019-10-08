@@ -1,0 +1,21 @@
+{% extends '../layouts/default.twig' %}
+{% set title = 'Index' %}
+
+{% block styles %}
+
+	<link rel="stylesheet" href="/assets/js/test.css"/>
+
+{% endblock %}
+
+{% block page %}
+
+	{% for item in news %}
+		<article>
+			<div class="news-item">{{ item.title }}</div>
+			<div class="news-description">{{ item.description|lower }}</div>
+		</article>
+	{% endfor %}
+
+{% endblock %}
+
+

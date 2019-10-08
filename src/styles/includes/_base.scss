@@ -1,0 +1,94 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  outline: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  position: relative;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  overflow-x: hidden;
+  min-width: 320px;
+  min-height: 100vh;
+  color: #000;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+  width: 12px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(32, 65, 180, .85);
+  border-radius: 0;
+  border: 0;
+  transition: all .2s ease-in-out;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  transition: all .2s ease-in-out;
+}
+
+a,
+label {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.visually-hidden {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  position: absolute;
+  clip: rect(0 0 0 0);
+}
+
+.container {
+  @extend %container;
+  max-width: 1560px;
+}
+
+header,
+main,
+footer {
+  flex-shrink: 0;
+}
+
+main {
+}
+
+footer {
+  margin-top: auto;
+}
+
+.fancybox-navigation {
+  position: static;
+}
