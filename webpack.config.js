@@ -85,10 +85,11 @@ const webpackConfig = {
 
 if (process.env.NODE_ENV === 'production') {
   // console.log('Welcome to production');
-  webpackConfig.devtool = 'source-map';
+
 }
 if (process.env.NODE_ENV === 'development') {
   // console.log('Welcome to development');
+  webpackConfig.devtool = 'source-map';
 }
 
 module.exports = webpackConfig;

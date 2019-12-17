@@ -25,7 +25,7 @@ import { paths } from "../config";
 export function scss() {
   return src(paths.styles.src)
     .pipe(plumber({errorHandler}))
-    .pipe(gulpif(isProd, sourcemaps.init() ))
+    .pipe(gulpif(!isProd, sourcemaps.init() ))
     .pipe(sassGlob())
     .pipe(sass({
       includePaths: ['node_modules'],
@@ -33,7 +33,7 @@ export function scss() {
     }))
     .pipe(postcss([ autoprefixer() ]))
 
-    .pipe(gulpif(isProd, sourcemaps.write('.') ))
+    .pipe(gulpif(!isProd, sourcemaps.write('.') ))
     .pipe(dest(paths.styles.dest))
     .pipe(browserSync.stream())
 }
