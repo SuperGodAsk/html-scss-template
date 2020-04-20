@@ -12,6 +12,8 @@ const path = require('path');
 
 // Plugins
 var WebpackNotifierPlugin = require('webpack-notifier');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 
 const webpackConfig = {
 
@@ -27,11 +29,22 @@ const webpackConfig = {
   optimization: {
     splitChunks: {
       cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
+        vendor: {
+          test(module, chunks) {
+            if (!String(module.context).includes('node_modules')) {
+              return false;
+            }
+
+            if (['nouislider'].some(str => String(module.context).includes(str))) {
+              return false;
+            }
+
+            return true;
+          },
           name: 'vendor',
           chunks: 'all',
           minSize: 0,
+          reuseExistingChunk: true
         },
       },
     },
@@ -41,7 +54,7 @@ const webpackConfig = {
     rules: [
       {
         test: /^(?!.*\.{test,min}\.js$).*\.js$/,
-        exclude: /(node_modules)/,
+        exclude: /node_modules\/(?!(swiper|dom7)\/).*/,
         use: {
           loader: 'babel-loader',
           options: {

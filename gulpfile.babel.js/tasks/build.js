@@ -14,11 +14,13 @@ import { templates } from './templates';
 import { assets } from './assets';
 import { copy } from './copy';
 import { data } from './data'
+import { images } from './images';
 // Config
 import { paths } from "../config";
 
 export const build = series(
   clean,
   data,
+  images,
   parallel(styles, scripts, templates, assets, copy)
 );

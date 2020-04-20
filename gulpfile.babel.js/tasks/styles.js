@@ -38,11 +38,12 @@ export function scss() {
     .pipe(browserSync.stream())
 }
 
+// TODO:Вернуть ошибки в консоль
 export function stylelint() {
   return src(paths.styles.watch)
     .pipe(gulpStylelint({
-      failAfterError: isProd,
-      reporters: [{ formatter: 'string', console: true }],
+      failAfterError: false, //isProd
+      reporters: [{ formatter: 'string', console: false }],
       syntax: 'scss'
     }));
 }

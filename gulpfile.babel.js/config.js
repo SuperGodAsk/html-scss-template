@@ -8,7 +8,7 @@ export const paths = {
   dest: './dist',
   deploy: './dist/**/*',
   styles: {
-    src: 'src/styles/style.scss',
+    src: ['src/styles/style.scss', 'src/styles/pages/*.scss'],
     watch: 'src/styles/**/*.scss',
     modules: 'src/modules/**/*.scss',
     dest: 'dist/assets/css',
@@ -31,7 +31,8 @@ export const paths = {
   },
   assets: {
     src: 'assets/**/*',
-    dest: 'dist/assets'
+    dest: 'dist/assets',
+    images: 'assets/img/*'
   },
   copy: {
     src: 'src/robots.txt',
