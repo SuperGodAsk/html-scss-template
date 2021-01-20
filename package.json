@@ -37,7 +37,7 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-stylelint": "^9.0.0",
     "gulp-twig": "^1.2.0",
-    "node-notifier": "^5.4.0",
+    "node-notifier": ">=8.0.1",
     "node-sass": "^4.10.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
